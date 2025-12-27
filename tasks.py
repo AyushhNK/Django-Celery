@@ -1,13 +1,25 @@
+import time
 from celery import Celery
 
-# Initialize Celery app with Redis as the broker
-app = Celery('tasks', broker='redis://localhost:6379/0', backend='redis://localhost:6379/0')
+app = Celery(
+    'tasks',
+    broker='redis://localhost:6379/0',
+    backend='redis://localhost:6379/0'
+)
 
 @app.task
 def add(x, y):
+    time.sleep(4)   # ✅ simulate long-running work
     return x + y
 
-# To test the task
+@app.task
+def multiply(x, y):
+    time.sleep(2)   # ✅ simulate long-running work
+    return x * y
+
+
 if __name__ == '__main__':
-    result = add.apply_async((4, 4))  # Use async task call
-    print('Task result:', result.get())  # Wait for the result
+    
+    print('Multiply result:', multiply.apply_async((4, 5)).get())
+    print('Add result:', add.apply_async((4, 4)).get())
+
