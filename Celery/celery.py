@@ -17,3 +17,13 @@ app.autodiscover_tasks()
 @app.task(bind=True)
 def debug_task(self):
     print(f'Request: {self.request!r}')
+
+
+# method 2 for scheduling tasks
+app.conf.beat_schedule = {
+    'every-10-seconds': {
+        'task': 'theapp.tasks.sub',
+        'schedule': 10.0,
+        'args': (16, 4),
+    },
+}

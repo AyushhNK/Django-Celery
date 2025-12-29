@@ -8,5 +8,6 @@
 <body>
     <h1>Welcome to The App Home Page</h1>
     <p>Task Result: {{ result }}</p>
+    <a href="{% url 'get_result' result.id %}">Check Task Status</a>
 </body>
 </html>

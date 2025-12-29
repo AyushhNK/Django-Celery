@@ -139,3 +139,12 @@ CELERY_RESULT_BACKEND = "redis://localhost:6379/0"
 # Task serializer format
 CELERY_ACCEPT_CONTENT = ["json"]
 CELERY_TASK_SERIALIZER = "json"
+
+# method 1 for scheduling tasks
+# CELERY_BEAT_SCHEDULE={
+#     'every-10-seconds':{
+#         'task':'theapp.tasks.hello_world',
+#         'schedule':10.0,
+#         'args':()
+#     }
+# }

@@ -5,3 +5,8 @@ from time import sleep
 def sub(x, y):
     sleep(5)
     return x - y
+
+@shared_task
+def hello_world():
+    print("Hello, World!")
+    return "Hello, World!"
