@@ -5,6 +5,15 @@ from time import sleep
 def sub(x, y):
     sleep(5)
     return x - y
+@shared_task
+def add(x, y):
+    sleep(5)
+    return x + y
+
+@shared_task
+def mul(x, y):
+    sleep(5)
+    return x * y
 
 @shared_task
 def hello_world():
